@@ -1,0 +1,17 @@
+jquery.ui.widget.js	
+extensionsSafeBuiltins	
+anonymouscontent.js	
+jquery.min.js	
+jquery.blueimp-…llery.min.js	
+load-image.all.min.js	
+jquery.fileupload-audio.js	
+jquery.fileupload-process.js	
+jquery.fileupload.js	
+jquery.fileupload-ui.js	
+jquery.fileupload-video.js	
+r.handlejquery.min.js	
+anonymousbootstrap.min.js	
+jquery.fileuplo…-validate.js	
+jquery.iframe-transport.js	
+canvas-to-blob.min.js	
+jquery.fileupload-image.js	
