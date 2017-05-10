@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class DelDuplicate {
 	
 	public static void main(String[] args) throws Exception {
 		List<String> list = getList();
-		Map map = new HashMap();
+		Map map = new LinkedHashMap();
 		for(String s : list){
 			map.put(s.replaceAll("[:,\\(,\\)]", "").replaceAll("[0-9]*", ""), "");
 		}

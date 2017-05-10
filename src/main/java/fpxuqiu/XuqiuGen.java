@@ -63,6 +63,9 @@ public class XuqiuGen {
         	File outFile = new File("C:\\Users\\mhy\\Desktop\\text.txt");
         	Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
         	t.process(dataMap, out);
+        	for(Object key : mapp.keySet()){
+        		System.out.printf("%s\t%s\n", key,mapp.get(key));
+        	}
         	System.out.println("执行成功,共 " + count + " 条记录");
     	}
     	
