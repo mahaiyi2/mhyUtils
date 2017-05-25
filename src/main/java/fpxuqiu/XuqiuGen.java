@@ -1,40 +1,26 @@
 package fpxuqiu;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;  
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.OutputStreamWriter;  
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
-
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-import freemarker.template.Configuration;  
-import freemarker.template.Template;  
+import utils.FileUtil;
+import utils.TempUtil;
   
 public class XuqiuGen {  
     private static boolean mapDup=false;  
-    private Configuration configuration = null;  
-      
-    public XuqiuGen(){  
-        configuration = new Configuration();  
-        configuration.setDefaultEncoding("UTF-8");  
-    }  
       
     public static void main(String[] args) throws Exception {  
-    	List list = getList();
+    	List list = FileUtil.file2List(XuqiuGen.class.getResource("/fpxuqiu/xuqiu.txt").getFile());
     	fupinxuqiu(list);
     }  
     /**
@@ -52,36 +38,14 @@ public class XuqiuGen {
     	if(mapDup){
         	System.out.println("执行失败：存在重复数据！！");
     	}else{
-    		Template t=null; 
-        	Configuration conf = new Configuration();
-        	conf.setClassForTemplateLoading(XuqiuGen.class, "/fpxuqiu");
-        	conf.setDefaultEncoding("UTF-8");
-        	//t =conf.getTemplate("text.ftl");
-        	t =conf.getTemplate("fupinxuqiu.ftl");
-        	HashMap dataMap = new HashMap();
-        	dataMap.put("mapp", mapp);
-        	File outFile = new File("C:\\Users\\mhy\\Desktop\\text.txt");
-        	Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
-        	t.process(dataMap, out);
-        	for(Object key : mapp.keySet()){
+    		boolean isSuc = TempUtil.genFromTemp(mapp, XuqiuGen.class,"/fpxuqiu", "fupinxuqiu.ftl", "C:\\Users\\mhy\\Desktop\\text.txt");
+        	if(!isSuc) return;
+    		for(Object key : mapp.keySet()){
         		System.out.printf("%s\t%s\n", key,mapp.get(key));
         	}
         	System.out.println("执行成功,共 " + count + " 条记录");
     	}
     	
-    }
-    static List getList() throws Exception{
-    	File infile= new File(XuqiuGen.class.getResource("/fpxuqiu/xuqiu.txt").getFile());
-    	FileReader fr = new FileReader(infile);
-    	BufferedReader br = new BufferedReader(fr);
-    	List<String> list = new ArrayList<String>();
-    	while(true){
-    		String hanzi= br.readLine();
-    		if( hanzi==null) break;
-    		list.add(hanzi);
-    	}
-    	br.close();
-    	return list;
     }
     /**
      * 
