@@ -17,7 +17,7 @@ public class JDBC {
     CallableStatement proc = null;
     
     public JDBC(){
-    	try {
+    	try { 
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, "fupin", "fupin");  
 	        stmt = conn.createStatement();  
