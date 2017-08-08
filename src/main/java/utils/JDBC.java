@@ -30,7 +30,7 @@ public class JDBC {
 		}  
         
     }
-    public static void insert(String tableName,Map<String,String> map) throws SQLException{
+    public  void insert(String tableName,Map<String,String> map) {
     	StringBuilder sbCol = new StringBuilder();
     	StringBuilder sbVal = new StringBuilder();
     	for(String key:map.keySet()){
@@ -41,8 +41,15 @@ public class JDBC {
     	String colString = sbCol.substring(0,sbCol.length()-1);
     	String valString = sbVal.substring(0,sbVal.length()-1);
     	String sql = "insert into " + tableName +" ("+ colString +") values("+ valString +")";
-    	//stmt.execute(sql);
-    	System.out.println(sql+";");
+    	try{
+    		stmt.execute(sql);
+    		//System.out.println(sql);
+    	}catch(Exception e){
+    		//e.printStackTrace();
+    		System.out.println(sql+";");
+    	}
+    	
+    	
     }
 	public  Map getHidAndSfz(String xm){
 		Map result = new HashMap<String, String>();
@@ -66,7 +73,7 @@ public class JDBC {
 	public void close(){
 		
 		try {
-			res.close();
+			//res.close();
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {

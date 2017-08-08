@@ -29,7 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import utils.JDBC;
 
-public class PicExcel {
+public class PicExcelHbgb {
 
 		public static void main(String[] args) throws Exception {
 			  ex2003();
@@ -51,61 +51,7 @@ public class PicExcel {
 	 } 
 
 		
-		public static void ex2010() throws Exception{
-			 InputStream inp = new FileInputStream("C:\\Users\\Administrator\\Desktop\\红山区机关单位干部名册201706(不包括处级单位)(1).xls");  
-			  XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(inp);  
-			  XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);  
-			        
-			     for (XSSFShape shape : sheet.getDrawingPatriarch().getShapes()) {  
-			    	 XSSFClientAnchor anchor = (XSSFClientAnchor) shape.getAnchor();  
-			         if (shape instanceof XSSFPicture) {  
-			        	 XSSFPicture pic = (XSSFPicture) shape;  
-			                int rowIdx = anchor.getRow2();  
-			                int colIdx = anchor.getCol2();
-			                Row row = sheet.getRow(rowIdx);
-			                List<String> list = new ArrayList<String>();
-			                Map<String,String> map = new HashMap<String,String> ();
-			                
-			                list.add("XM");
-			                list.add("XB");
-			                list.add("MZ");
-			                list.add("CSNY");
-			                list.add("NL");
-			                list.add("CJGZSJ");
-			                list.add("RDSJ");
-			                list.add("FKSJ");
-			                list.add("ZKSJ");
-			                list.add("XZSJ");
-			                list.add("TYJBSJ");
-			                list.add("TYGWSJ");
-			                list.add("QRZJY_XL");
-			                list.add("QRZ_ZY");
-			                list.add("ZZZGXL");
-			                list.add("ZZ_ZY");
-			                list.add("GZDW");
-			                list.add("ZW");
-			                list.add("GRJL");
-			                list.add("JG");
-			                list.add("CSD");
-			                list.add("BZ");
-			                list.add("BIANZHI");
-			                list.add("NAME");
-			                list.add("NAME_JC");
-			                
-			                for(int i = 1;i<24 ; i++){
-			                	Cell cell = row.getCell(i);
-			                	cell.setCellType(Cell.CELL_TYPE_STRING);
-			                	map.put(list.get(i-1), cell.getStringCellValue());
-			                } 
-			                XSSFPictureData picData = pic.getPictureData();  
-				            String photo = savePic(picData);
-			                map.put("PHOTO", photo);
-			                map.put("GBGL_ID", UUID.randomUUID().toString());
-			                new JDBC().insert("TB_GBGL", map);
-			              
-			            }  
-			      }
-		}
+		
 		
 		/*
 		 * 
@@ -113,7 +59,7 @@ public class PicExcel {
 		 */
 		public static void ex2003() throws Exception{
 			 JDBC jdbc = new JDBC();
-			InputStream inp = new FileInputStream("C:\\Users\\Administrator\\Desktop\\红山区机关单位干部名册201706(不包括处级单位)(3).xls");  
+			InputStream inp = new FileInputStream("C:\\Users\\Administrator\\Desktop\\2017年7月调整后后备干部名册.xls");  
 			 HSSFWorkbook workbook = (HSSFWorkbook) WorkbookFactory.create(inp);  
 			 HSSFSheet sheet = (HSSFSheet) workbook.getSheetAt(0);  
 			        int total = 0;
@@ -126,38 +72,28 @@ public class PicExcel {
 			                Row row = sheet.getRow(rowIdx);
 			                List<String> list = new ArrayList<String>();
 			                Map<String,String> map = new LinkedHashMap<String,String>();
-			                
 			                list.add("XM");
 			                list.add("XB");
 			                list.add("MZ");
+			                list.add("JRFS");
 			                list.add("CSNY");
-			                list.add("NL");
 			                list.add("CJGZSJ");
 			                list.add("RDSJ");
-			                list.add("FKSJ");
-			                list.add("ZKSJ");
-			                list.add("XZSJ");
-			                list.add("TYJBSJ");
-			                list.add("TYGWSJ");
 			                list.add("QRZJY_XL");
+			                list.add("QRZJY_XW");
 			                list.add("QRZ_ZY");
 			                list.add("ZZZGXL");
+			                list.add("ZZ_XW");
 			                list.add("ZZ_ZY");
 			                list.add("GZDW");
-			                list.add("ZW");
 			                list.add("GRJL");
-			                list.add("JG");
-			                list.add("CSD");
-			                list.add("BZ");
-			                list.add("BIANZHI");
-			                list.add("NAME");
-			                list.add("NAME_JC");
-			                list.add("ORDER_BY");
-			                for(int i = 1;i<27; i++){
+			                list.add("PARTY_COMMITTEE_MANAGE_ID");
+			                for(int i = 1;i<17; i++){
 			                	Cell cell = row.getCell(i);
 			                	cell.setCellType(Cell.CELL_TYPE_STRING);
 			                	map.put(list.get(i-1), cell.getStringCellValue());
 			                } 
+			                map.put("GB_LX", "0");
 			                HSSFPictureData picData = pic.getPictureData();  
 				            String photo = savePic(picData);
 			                map.put("PHOTO", photo);

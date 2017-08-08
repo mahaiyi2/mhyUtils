@@ -1,0 +1,50 @@
+	
+Java上传图片时，对某些图片进行缩放、裁剪或者生成缩略图时会蒙上一层红色，经过检查只要经过ImageIO.read()方法读取后再保存，该图片便已经变成红图。因此，可以推测直接原因在于ImageIO.read()方法加载图片的过程存在问题。
+public static BufferedImage getImages(byte[] data) throws IOException { 
+ByteArrayInputStream input = new ByteArrayInputStream(data); 
+return ImageIO.read(input); 
+} 
+
+经过查阅得知ImageIO.read()方法读取图片时可能存在不正确处理图片ICC信息的问题，ICC为JPEG图片格式中的一种头部信息，导致渲染图片前景色时蒙上一层红色。解决方案：
+不再使用ImageIO.read()方法加载图片，而使用JDK中提供的Image src=Toolkit.getDefaultToolkit().getImage
+
+
+Image src=Toolkit.getDefaultToolkit().getImage(file.getPath()); 
+BufferedImage image=BufferedImageBuilder.toBufferedImage(src);//Image to BufferedImage 
+
+或者Toolkit.getDefaultToolkit().createImage
+Image imageTookit = Toolkit.getDefaultToolkit().createImage(bytes); 
+BufferedImage cutImage = BufferedImageBuilder.toBufferedImage(imageTookit); 
+
+BufferedImageBuilder源码：
+public static BufferedImage toBufferedImage(Image image) { 
+if (image instanceof BufferedImage) { 
+return (BufferedImage) image; 
+} 
+// This code ensures that all the pixels in the image are loaded 
+image = new ImageIcon(image).getImage(); 
+BufferedImage bimage = null; 
+GraphicsEnvironment ge = GraphicsEnvironment 
+.getLocalGraphicsEnvironment(); 
+try { 
+int transparency = Transparency.OPAQUE; 
+GraphicsDevice gs = ge.getDefaultScreenDevice(); 
+GraphicsConfiguration gc = gs.getDefaultConfiguration(); 
+bimage = gc.createCompatibleImage(image.getWidth(null), 
+image.getHeight(null), transparency); 
+} catch (HeadlessException e) { 
+// The system does not have a screen 
+} 
+if (bimage == null) { 
+// Create a buffered image using the default color model 
+int type = BufferedImage.TYPE_INT_RGB; 
+bimage = new BufferedImage(image.getWidth(null), 
+image.getHeight(null), type); 
+} 
+// Copy image to buffered image 
+Graphics g = bimage.createGraphics(); 
+// Paint the image onto the buffered image 
+g.drawImage(image, 0, 0, null); 
+g.dispose(); 
+return bimage; 
+}
