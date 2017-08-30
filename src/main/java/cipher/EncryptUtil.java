@@ -11,7 +11,7 @@ import javax.crypto.spec.DESKeySpec;
  */
 public class EncryptUtil {
 	private static SecretKey sk;
-	private final static String strKey = "Luculent1!125V7";
+	private final static String strKey = "12345869";
 	private static Cipher enCipher;
 	private static Cipher deCipher;
 	private EncryptUtil(){
