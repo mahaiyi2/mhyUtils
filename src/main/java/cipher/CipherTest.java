@@ -24,10 +24,10 @@ public class CipherTest {
 		CipherInputStream cIn = null;
 
 		try {
-			in = new FileInputStream("C:\\Users\\Administrator\\Desktop\\20170830144217.zip");
-			Cipher cipher = EncryptUtil.getDeCipher();
+			in = new FileInputStream("C:\\Users\\Administrator\\Desktop\\20170901135647");
+			Cipher cipher = EncryptUtilAES.getDeCipher();
 			cIn = new CipherInputStream(in, cipher);
-			out = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\222decoded.zip");
+			out = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\decoded.xls");
 			byte[] buffer = new byte[1024];
 			int r;
 			while ((r = cIn.read(buffer)) >= 0) {
@@ -58,9 +58,9 @@ public class CipherTest {
 		CipherOutputStream cOut = null;
 		
 		try {
-			in = new FileInputStream("C:\\Users\\Administrator\\Desktop\\新建文本文档 (3).txt");
-			Cipher cipher = EncryptUtil.getEnCipher();
-			out = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\encoded.txt");
+			in = new FileInputStream("C:\\Users\\Administrator\\Desktop\\20170831115155.xls");
+			Cipher cipher = EncryptUtilAES.getEnCipher();
+			out = new FileOutputStream("C:\\Users\\Administrator\\Desktop\\encoded.xls");
 			cOut = new CipherOutputStream(out, cipher);
 			byte[] buffer = new byte[1024];
 			int r;
@@ -81,5 +81,6 @@ public class CipherTest {
 	public static void main(String[] args) {
 		//upload();
 		download();
+		
 	}
 }
