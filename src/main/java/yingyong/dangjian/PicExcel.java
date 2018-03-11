@@ -31,9 +31,14 @@ import utils.JDBC;
 
 public class PicExcel {
 
-		public static void main(String[] args) throws Exception {
-			  ex2003();
-			     
+		public static void main(String[] args) {
+			try{
+				ex2003();
+			}catch(Exception e){
+				e.printStackTrace();
+			} 
+			
+			  System.out.println("导入完成");   
 			 }
 		
 		
@@ -112,8 +117,9 @@ public class PicExcel {
 		 * 
 		 */
 		public static void ex2003() throws Exception{
-			 JDBC jdbc = new JDBC();
-			InputStream inp = new FileInputStream("C:\\Users\\Administrator\\Desktop\\红山区机关单位干部名册201706(不包括处级单位)(3).xls");  
+			
+			JDBC jdbc = new JDBC();
+			InputStream inp = new FileInputStream("C:\\Users\\Administrator\\Desktop\\dangjian.xls");  
 			 HSSFWorkbook workbook = (HSSFWorkbook) WorkbookFactory.create(inp);  
 			 HSSFSheet sheet = (HSSFSheet) workbook.getSheetAt(0);  
 			        int total = 0;
@@ -151,9 +157,9 @@ public class PicExcel {
 			                list.add("BZ");
 			                list.add("BIANZHI");
 			                list.add("NAME");
-			                list.add("NAME_JC");
+//			                list.add("NAME_JC");
 			                list.add("ORDER_BY");
-			                for(int i = 1;i<27; i++){
+			                for(int i = 1;i<26; i++){
 			                	Cell cell = row.getCell(i);
 			                	cell.setCellType(Cell.CELL_TYPE_STRING);
 			                	map.put(list.get(i-1), cell.getStringCellValue());

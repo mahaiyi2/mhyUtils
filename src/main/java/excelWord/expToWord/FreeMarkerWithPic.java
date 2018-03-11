@@ -30,7 +30,7 @@ public class FreeMarkerWithPic {
         /** 加载模板 **/
         Template template = configuration.getTemplate("gbrmspb.ftl");
         /** 准备数据 **/
-        Map<String,String> dataMap = new HashMap<>();
+        Map<String,String> dataMap = new HashMap<String,String>();
 
         /** 图片路径 **/
         String imagePath = "C:\\Users\\Administrator\\Desktop\\c.jpeg";

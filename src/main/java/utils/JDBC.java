@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 public class JDBC {
 	String driver = "oracle.jdbc.OracleDriver";  
-    String url = "jdbc:Oracle:thin:@172.168.1.156:1521:orcl";  
+    String url = "jdbc:Oracle:thin:@localhost:1521:orcl";  
     Statement stmt = null;  
     ResultSet res = null;  
     Connection conn = null;  

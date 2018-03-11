@@ -5,12 +5,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.apache.poi.POIXMLDocumentPart;
 import org.apache.poi.ss.usermodel.PictureData;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
+import org.apache.poi.xssf.usermodel.XSSFDrawing;
 import org.apache.poi.xssf.usermodel.XSSFPicture;
 import org.apache.poi.xssf.usermodel.XSSFPictureData;
 import org.apache.poi.xssf.usermodel.XSSFShape;
@@ -23,8 +26,18 @@ public class picExcel2010 {
 		     XSSFWorkbook workbook = (XSSFWorkbook) WorkbookFactory.create(inp);  
 		        //List<XSSFPictureData> pictures = workbook.getAllPictures();  
 		        XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);  
+		        List<XSSFShape> shapes = null;
+		        //poi 3.9写法
+		        for (POIXMLDocumentPart dr : sheet.getRelations()) {  
+		            if (dr instanceof XSSFDrawing) {  
+		                XSSFDrawing drawing = (XSSFDrawing) dr;  
+		               shapes = drawing.getShapes();  
+		            }
+		        }
+		        //poi 3.15写法
+//		        shapes = sheet.getDrawingPatriarch().getShapes();
 		        
-		     for (XSSFShape shape : sheet.getDrawingPatriarch().getShapes()) {  
+		        for (XSSFShape shape : shapes) {  
 		            XSSFClientAnchor anchor = (XSSFClientAnchor) shape.getAnchor();  
 		         if (shape instanceof XSSFPicture) {  
 		                XSSFPicture pic = (XSSFPicture) shape;  
