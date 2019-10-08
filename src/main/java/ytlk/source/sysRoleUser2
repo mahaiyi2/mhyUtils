@@ -1,0 +1,8 @@
+sys_role:角色
+role_name:名称
+hhh_dd:到了
+df_fd:大幅
+#
+sys_role_user:系统角色用户对应关系
+role_id:角色Id
+user_id:用户Id

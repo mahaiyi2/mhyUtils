@@ -1,0 +1,4 @@
+sys_menu_opts:系统菜单按钮
+menu_id:菜单Id
+opt_name:按钮名称
+perm:访问权限

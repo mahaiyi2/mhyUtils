@@ -1,0 +1,6 @@
+sys_dic:系统字典
+code:标识
+p_code:父标识
+type:类型
+p_type:父类型
+name:名称

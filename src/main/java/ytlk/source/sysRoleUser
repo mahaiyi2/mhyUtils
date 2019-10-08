@@ -1,0 +1,4 @@
+#
+sys_role_user:系统角色用户对应关系
+role_id:角色Id
+user_id:用户Id

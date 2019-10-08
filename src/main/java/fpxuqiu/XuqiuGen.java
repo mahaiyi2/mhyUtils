@@ -38,8 +38,8 @@ public class XuqiuGen {
     	if(mapDup){
         	System.out.println("执行失败：存在重复数据！！");
     	}else{
-    		boolean isSuc = TempUtil.genFromTemp(mapp, XuqiuGen.class,"/fpxuqiu", "fupinxuqiu.ftl", "C:\\Users\\mhy\\Desktop\\text.txt");
-        	if(!isSuc) return;
+//    		boolean isSuc = TempUtil.genFromTemp(mapp, XuqiuGen.class,"/fpxuqiu", "fupinxuqiu.ftl", "C:\\Users\\mhy\\Desktop\\text.txt");
+//        	if(!isSuc) return;
     		for(Object key : mapp.keySet()){
         		System.out.printf("%s\t%s\n", key,mapp.get(key));
         	}

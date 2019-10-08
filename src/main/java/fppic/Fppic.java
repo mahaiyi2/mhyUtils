@@ -21,7 +21,6 @@ import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;
 import freemarker.template.Template;
-import t2.DetailGen;
 
 public class Fppic {
 	public static String cunID="150402003007";
@@ -162,7 +161,7 @@ public class Fppic {
 		
     	Template t=null; 
     	Configuration conf = new Configuration();
-    	conf.setClassForTemplateLoading(DetailGen.class, "/fppic");
+//    	conf.setClassForTemplateLoading(DetailGen.class, "/fppic");
     	conf.setDefaultEncoding("UTF-8");
     	//t =conf.getTemplate("text.ftl");
     	t =conf.getTemplate("insert2attach.ftl");

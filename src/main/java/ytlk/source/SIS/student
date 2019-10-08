@@ -1,0 +1,12 @@
+biz_student:学生信息
+name:名称
+gender:性别
+birth_date:出生日期
+nation:民族
+address:家庭住址
+disabled_type:伤残类型
+disabled_resion:致残原因
+#
+student_class:学生班级对应
+student_id:学生ID
+class_id:班级ID
