@@ -68,4 +68,11 @@ public class FileUtil {
     	
 		return list;
 	}
+	
+	public static void appendToFilePerLine(File outFile,String content) throws IOException{
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile,true),"utf-8"));
+		out.newLine();
+		out.write(content);
+		out.close();
+	}
 }

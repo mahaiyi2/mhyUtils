@@ -9,7 +9,7 @@ import java.util.List;
 
 
 import fpxuqiu.XuqiuGen;
-import us.codecraft.webmagic.selector.Html;
+//import us.codecraft.webmagic.selector.Html;
 
 public class Parser {
 	public static void main(String[] args) {
@@ -46,9 +46,9 @@ public class Parser {
 	}
 	 static void execute(){
 		String xml=getXML();
-		Html h = Html.create(xml);
+//		Html h = Html.create(xml);
     	
-		List<String> list = h.xpath("//label/text()").all();//解析内容
+		List<String> list = null;//h.xpath("//label/text()").all();//解析内容
     	
     	List<String> hzList = new ArrayList<String>();
     	int i=0;
