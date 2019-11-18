@@ -14,6 +14,7 @@ public class ${SPName} extends SqlProvider{
 	static {
 		Map<String,String> basic = new HashMap<String,String>();
 		basic.put("ID","${r"#{"}id${r"}"}");
+		basic.put("PARENT_ID","${r"#{"}parentId${r"}"}");
 		<#list fieldList as field>
 		basic.put("${field.column}","${r"#{"}${field.fieldName}${r"}"}");
 		</#list>
@@ -33,6 +34,9 @@ public class ${SPName} extends SqlProvider{
 	}
 	
 	protected SQL listCondition(SQL sql,Map<String,Object> params) {
+					if(params.get("parentId")!=null) {
+						sql.WHERE("PARENT_ID = ${r"#{"}params.parentId${r"}"}");
+					}
 					if(StringUtil.isNotBlankString(params.get("search"))) {
 						sql.WHERE("NAME like CONCAT('%',${r"#{"}params.search${r"}"},'%')");
 					}

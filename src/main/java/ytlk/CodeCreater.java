@@ -11,10 +11,12 @@ import utils.StringUtil;
 import utils.TempUtil;
 
 public class CodeCreater {
-	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\cms\\node";
+	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\cms\\node";
+//	public static final String templatePathSufix = "";
+	public static final String templatePathSufix = "/tree";
 	//包名，如果不写则没有
 	public static final String PACKAGE_NAME = null;
-	public static final String baseOutPath="C:\\Users\\ab048704\\Desktop\\ytlkCode\\";
+	public static final String baseOutPath="C:\\\\Users\\\\Administrator\\\\Desktop\\ytlkCode\\";
 	public static void main(String[] args) {
 		
 		List<String> list = FileUtil.file2List(sourceFile);//读取文件到list
@@ -81,17 +83,17 @@ public class CodeCreater {
 		
 		
 		String packageFilePath =   packageName == null?"":"\\"+packageName;
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "entityTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\entity"+packageFilePath,entityName+".java");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "controllerTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\controller"+packageFilePath,controllerName+".java");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "serviceTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\service"+packageFilePath,serviceName+".java");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "serviceImplTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\serviceImpl"+packageFilePath,serviceImplName+".java");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "mapperTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\mapper"+packageFilePath,mapperName+".java");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "SPTemplate.ftl",baseOutPath+"src\\main\\java\\com\\ytlk\\back\\mapper\\sp"+packageFilePath,SPName+".java");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "mysqlScriptTemplate.ftl", baseOutPath,entityNameFl+"Sql.sql");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "listPageTemplate.ftl", baseOutPath+"ytlkLTE\\pages"+packageFilePath,listPageName+".html");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "editPageTemplate.ftl",baseOutPath+"ytlkLTE\\pages"+packageFilePath,editPageName+".html");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "listJsTemplate.ftl", baseOutPath+"ytlkLTE\\dist\\js\\pages"+packageFilePath,listPageName+".js");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "editJsTemplate.ftl", baseOutPath+"ytlkLTE\\dist\\js\\pages"+packageFilePath,editPageName+".js");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "entityTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\entity"+packageFilePath,entityName+".java");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "controllerTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\controller"+packageFilePath,controllerName+".java");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "serviceTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\service"+packageFilePath,serviceName+".java");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "serviceImplTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\serviceImpl"+packageFilePath,serviceImplName+".java");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "mapperTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\mapper"+packageFilePath,mapperName+".java");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "SPTemplate.ftl",baseOutPath+"src\\main\\java\\com\\ytlk\\back\\mapper\\sp"+packageFilePath,SPName+".java");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "mysqlScriptTemplate.ftl", baseOutPath,entityNameFl+"Sql.sql");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "listPageTemplate.ftl", baseOutPath+"ytlkLTE\\pages"+packageFilePath,listPageName+".html");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "editPageTemplate.ftl",baseOutPath+"ytlkLTE\\pages"+packageFilePath,editPageName+".html");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "listJsTemplate.ftl", baseOutPath+"ytlkLTE\\dist\\js\\pages"+packageFilePath,listPageName+".js");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "editJsTemplate.ftl", baseOutPath+"ytlkLTE\\dist\\js\\pages"+packageFilePath,editPageName+".js");
 	
 		
 		System.out.println("完成!!!");

@@ -1,4 +1,4 @@
-cms_node:栏目
-node_code:标识
-node_type:类型
+cms_node:栏目管理
 node_name:名称
+node_type:类型
+node_code:标识
