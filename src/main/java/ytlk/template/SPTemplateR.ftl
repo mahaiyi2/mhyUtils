@@ -43,7 +43,7 @@ public class ${SPName} {
 		"${r"#{"}${field.fieldName}${r"}"}," + 
 		</#list>
 		"${r"#{"}createBy${r"}"},"+
-		"${r"#{"}createTime$${r"}"}"+
+		"${r"#{"}createTime${r"}"}"+
 		")";
 	}
 }
