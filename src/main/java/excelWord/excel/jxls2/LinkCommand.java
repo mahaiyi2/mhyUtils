@@ -27,9 +27,9 @@ public class LinkCommand extends AbstractCommand {
     private Area area;
 
     @Override
-    public String getName() {
+    public String getName() {  
         return "link";
-    }
+    } 
 
     @Override
     public Command addArea(Area area) {
