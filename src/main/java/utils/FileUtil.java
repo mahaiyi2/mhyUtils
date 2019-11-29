@@ -13,10 +13,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.jexl2.Main;
 
 
-public class FileUtil {
+public class FileUtil extends FileUtils{
 	/**
 	 * 把map写道文件中
 	 * @param contentMap 内容
@@ -71,6 +72,20 @@ public class FileUtil {
 		return list;
 	}
 	/**
+	 * 文
+	 * @param list
+	 * @throws IOException 
+	 */
+	public static void list2file(Iterable<String> list,String filePath) throws IOException{
+		File outFile = new File(filePath);
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
+		for(String s: list){
+			out.write(s);
+			out.newLine();
+		}
+		out.close();
+	}
+	/**
 	 * 逐行将数据写入文件
 	 * @param outFile
 	 * @param content
@@ -82,15 +97,6 @@ public class FileUtil {
 		out.write(content);
 		out.close();
 	}
-	/**
-	 * 把目录下的文件名写入到text中
-	 * @param folderPath
-	 */
-	public static void fileNameToText(String folderPath,String textPath){
-		
-	}
 	
-	public static void main(String[] args) {
-		
-	}
+	
 }
