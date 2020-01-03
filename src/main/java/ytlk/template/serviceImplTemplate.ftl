@@ -1,4 +1,4 @@
-package com.ytlk.back.serviceImpl;
+package com.ytlk.${modelName}.serviceImpl;
 import org.springframework.stereotype.Service;
 
 import com.ytlk.back.entity.${entityName};

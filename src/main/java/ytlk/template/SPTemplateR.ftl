@@ -1,4 +1,4 @@
-package com.ytlk.back.mapper.sp;
+package com.ytlk.${modelName}.mapper.sp;
 
 import java.text.MessageFormat;
 import java.util.Map;

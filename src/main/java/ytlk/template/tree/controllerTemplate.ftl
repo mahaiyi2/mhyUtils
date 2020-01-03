@@ -1,4 +1,4 @@
-package com.ytlk.back.controller;
+package com.ytlk.${modelName}.controller;
 
 
 import java.util.List;

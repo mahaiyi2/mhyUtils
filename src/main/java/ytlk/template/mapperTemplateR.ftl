@@ -1,4 +1,4 @@
-package com.ytlk.back.mapper;
+package com.ytlk.${modelName}.mapper;
 
 
 

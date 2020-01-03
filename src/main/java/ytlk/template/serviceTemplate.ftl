@@ -1,4 +1,4 @@
-package com.ytlk.back.service;
+package com.ytlk.${modelName}.service;
 
 import com.ytlk.back.entity.${entityName};
 /**

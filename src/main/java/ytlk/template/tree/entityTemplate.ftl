@@ -1,4 +1,4 @@
-package com.ytlk.back.entity;
+package com.ytlk.${modelName}.entity;
 
 
 /**
