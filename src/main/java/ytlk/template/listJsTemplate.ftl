@@ -1,3 +1,4 @@
+import com.ytlk.core.entity.BaseEntity;
  /*
  *列表
   */

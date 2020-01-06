@@ -1,5 +1,5 @@
 package com.ytlk.${modelName}.entity;
-
+import com.ytlk.core.entity.BaseEntity;
 
 /**
  * 

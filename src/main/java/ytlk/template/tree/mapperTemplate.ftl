@@ -12,9 +12,11 @@ import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
-import com.ytlk.back.entity.${entityName};
-import com.ytlk.back.mapper.sp.${SPName};
-import com.ytlk.back.support.DbQuery;
+import com.ytlk.core.mapper.BaseMapper;
+import com.ytlk.core.support.DbQuery;
+import com.ytlk.${modelName}.entity.${entityName};
+import com.ytlk.${modelName}.mapper.sp.${SPName};
+
 /**
  * 
  * @author mhy

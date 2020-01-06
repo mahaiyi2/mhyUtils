@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.ytlk.back.entity.${entityName};
-import com.ytlk.back.service.${serviceName};
+import com.ytlk.core.controller.BaseController;
+import com.ytlk.${modelName}.entity.${entityName};
+import com.ytlk.${modelName}.service.${serviceName};
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,21 +37,21 @@ public class ${controllerName} extends BaseController{
 	@ApiOperation(value = "创建")
     @PostMapping("/create")
     @RequiresPermissions("${entityNameFl}:insert")
-	public Object create(@ApiParam(required = true, value = "基本信息") @RequestBody ${entityName} obj) {
+	public Object create(@ApiParam(required = true, value = "基本信息") @RequestBody ${entityName} obj) throws Exception {
 		service.create(obj);
 		return responseSuccess(obj);
 	}
 	@ApiOperation(value = "更新")
 	@PostMapping("/edit")
 	@RequiresPermissions("${entityNameFl}:update")
-	public Object edit(@ApiParam(required = true, value = "基本信息") @RequestBody ${entityName} obj) {
+	public Object edit(@ApiParam(required = true, value = "基本信息") @RequestBody ${entityName} obj) throws Exception {
 		service.update(obj);
 		return responseSuccess(obj);
 	}
 	@ApiOperation(value = "获取列表")
 	@PostMapping("/queryList")
 	@RequiresPermissions("${entityNameFl}:read")
-	public Object queryList(@ApiParam(required = false, value = "基本信息") @RequestBody Map<String, Object> params ) {
+	public Object queryList(@ApiParam(required = false, value = "基本信息") @RequestBody Map<String, Object> params ) throws Exception {
 		if(params.get("offset")==null) {//有分页参数
 			List<${entityName}> theList = service.queryList(params);
 			return responseSuccess(theList);
@@ -71,7 +71,7 @@ public class ${controllerName} extends BaseController{
 	@ApiOperation(value = "获取详情")
     @PostMapping("/getById")
     @RequiresPermissions("${entityNameFl}:read")
-	public Object getById(@ApiParam(name="id", required = true, value = "id") @RequestParam(value = "id",required = true)Long id){
+	public Object getById(@ApiParam(name="id", required = true, value = "id") @RequestParam(value = "id",required = true)Long id) throws Exception {
 		${entityName} obj = service.queryById(id);
 		return responseSuccess(obj);
 		
@@ -86,7 +86,7 @@ public class ${controllerName} extends BaseController{
 	@ApiOperation(value = "删除")
 	@PostMapping("/delById")
 	@RequiresPermissions("${entityNameFl}:delete")
-	public Object delById(@ApiParam(name="id", required = true, value = "id") @RequestParam(value = "id",required = true)Long id){
+	public Object delById(@ApiParam(name="id", required = true, value = "id") @RequestParam(value = "id",required = true)Long id) throws Exception {
 		service.delById(id);
 		return responseSuccess();
 		

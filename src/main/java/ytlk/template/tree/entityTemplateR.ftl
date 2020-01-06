@@ -1,6 +1,6 @@
 package com.ytlk.${modelName}.entity;
 import java.util.Date;
-
+import com.ytlk.core.entity.BaseEntity;
 /**
  * 
  * @author mhy

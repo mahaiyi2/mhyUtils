@@ -2,7 +2,7 @@ package com.ytlk.${modelName}.mapper.sp;
 
 import java.text.MessageFormat;
 import java.util.Map;
-import com.ytlk.back.entity.${entityName};
+import com.ytlk.${modelName}.entity.${entityName};
 import java.util.List;
 
 

@@ -11,15 +11,15 @@ import utils.StringUtil;
 import utils.TempUtil;
 
 public class CodeCreater {
-	public static final String MODEL_NAME = "core";
-//	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\cms\\info";
-	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\cms\\info";
+	public static final String MODEL_NAME = "mm";
+	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\mm\\contact";//台式机
+//	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\cms\\info";//笔记本
 	public static final String templatePathSufix = "";
-//	public static final String templatePathSufix = "/tree";
+//	public static final String templatePathSufix = "/tree";//树结构专用
 	//包名，如果不写则没有
 	public static final String PACKAGE_NAME = null;
-//	public static final String baseOutPath="C:\\\\Users\\\\Administrator\\\\Desktop\\ytlkCode\\";
-	public static final String baseOutPath="C:\\Users\\ab048704\\Desktop\\ytlkCode\\";
+	public static final String baseOutPath="C:\\\\Users\\\\Administrator\\\\Desktop\\ytlkCode\\";
+//	public static final String baseOutPath="C:\\Users\\ab048704\\Desktop\\ytlkCode\\";
 	public static void main(String[] args) {
 		
 		List<String> list = FileUtil.file2List(sourceFile);//读取文件到list
@@ -93,8 +93,8 @@ public class CodeCreater {
 		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "mapperTemplate.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\"+MODEL_NAME+"\\mapper"+packageFilePath,mapperName+".java");
 		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "SPTemplate.ftl",baseOutPath+"src\\main\\java\\com\\ytlk\\"+MODEL_NAME+"\\mapper\\sp"+packageFilePath,SPName+".java");
 		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "mysqlScriptTemplate.ftl", baseOutPath,entityNameFl+"Sql.sql");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "listPageTemplate.ftl", baseOutPath+"ytlkLTE\\pages"+MODEL_NAME+"\\"+packageFilePath,listPageName+".html");
-		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "editPageTemplate.ftl",baseOutPath+"ytlkLTE\\pages"+MODEL_NAME+"\\"+packageFilePath,editPageName+".html");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "listPageTemplate.ftl", baseOutPath+"ytlkLTE\\pages\\"+MODEL_NAME+"\\"+packageFilePath,listPageName+".html");
+		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "editPageTemplate.ftl",baseOutPath+"ytlkLTE\\pages\\"+MODEL_NAME+"\\"+packageFilePath,editPageName+".html");
 		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "listJsTemplate.ftl", baseOutPath+"ytlkLTE\\pages\\"+MODEL_NAME+"\\js"+packageFilePath,listPageName+".js");
 		TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template" + templatePathSufix, "editJsTemplate.ftl", baseOutPath+"ytlkLTE\\pages\\"+MODEL_NAME+"\\js"+packageFilePath,editPageName+".js");
 	
@@ -152,13 +152,12 @@ public static void genRelation(List<String> list) {
 	param.put("editPageName", editPageName);
 	param.put("fieldList",fieldList);
 	param.put("nowDate", new Date());
+	param.put("modelName", MODEL_NAME);
 	
 	
-	
-	
-	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "entityTemplateR.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\entity",entityName+".java");
-	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "mapperTemplateR.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\back\\mapper",mapperName+".java");
-	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "SPTemplateR.ftl",baseOutPath+"src\\main\\java\\com\\ytlk\\back\\mapper\\sp",SPName+".java");
+	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "entityTemplateR.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\"+MODEL_NAME+"\\entity",entityName+".java");
+	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "mapperTemplateR.ftl", baseOutPath+"src\\main\\java\\com\\ytlk\\"+MODEL_NAME+"\\mapper",mapperName+".java");
+	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "SPTemplateR.ftl",baseOutPath+"src\\main\\java\\com\\ytlk\\"+MODEL_NAME+"\\mapper\\sp",SPName+".java");
 	TempUtil.genFromTemp(param, CodeCreater.class, "/ytlk/template", "mysqlScriptTemplateR.ftl", baseOutPath,entityNameFl+"Sql.sql");
 }
 	

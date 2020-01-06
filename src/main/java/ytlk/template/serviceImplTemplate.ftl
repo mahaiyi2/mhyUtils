@@ -1,9 +1,9 @@
 package com.ytlk.${modelName}.serviceImpl;
 import org.springframework.stereotype.Service;
-
-import com.ytlk.back.entity.${entityName};
-import com.ytlk.back.mapper.${mapperName};
-import com.ytlk.back.service.${serviceName};
+import com.ytlk.core.serviceImpl.BaseServiceImpl;
+import com.ytlk.${modelName}.entity.${entityName};
+import com.ytlk.${modelName}.mapper.${mapperName};
+import com.ytlk.${modelName}.service.${serviceName};
 /**
  * 
  * @author mhy

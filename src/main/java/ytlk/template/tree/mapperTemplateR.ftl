@@ -6,8 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
-import com.ytlk.back.entity.${entityName};
-import com.ytlk.back.mapper.sp.${SPName};
+import com.ytlk.${modelName}.entity.${entityName};
+import com.ytlk.${modelName}.mapper.sp.${SPName};
+import com.ytlk.core.mapper.BaseMapper;
+
 /**
  * 
  * @author mhy

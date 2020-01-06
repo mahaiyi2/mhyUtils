@@ -1,6 +1,6 @@
 package com.ytlk.${modelName}.service;
-
-import com.ytlk.back.entity.${entityName};
+import com.ytlk.core.service.BaseService;
+import com.ytlk.${modelName}.entity.${entityName};
 /**
  * 
  * @author mhy

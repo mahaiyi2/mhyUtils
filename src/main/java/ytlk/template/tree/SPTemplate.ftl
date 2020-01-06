@@ -2,8 +2,10 @@ package com.ytlk.${modelName}.mapper.sp;
 
 import java.util.HashMap;
 import java.util.Map;
-import com.ytlk.util.StringUtil;
+import com.ytlk.core.mapper.sp.SqlProvider;
+import com.ytlk.core.util.StringUtil;
 import org.apache.ibatis.jdbc.SQL;
+import com.ytlk.core.mapper.sp.SqlHelper;
 
 
 
