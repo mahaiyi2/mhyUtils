@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.jexl2.Main;
@@ -41,7 +43,7 @@ public class FileUtil extends FileUtils{
 	 * @return
 	 * 
 	 */
-	public static List<String> file2List(String url){
+	public static List<String> file2List(String url,boolean ignoreSpace){
 		List<String> list = new ArrayList<String>();
 		File infile= new File(url);
     	FileReader fr;
@@ -52,6 +54,13 @@ public class FileUtil extends FileUtils{
 	    	while(true){
 	    		String s= br.readLine();
 	    		if( s==null) break;
+	    		if(ignoreSpace){
+	    			Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+		            Matcher m = p.matcher(s);
+		            s = m.replaceAll("");
+
+	    		}
+	    		
 	    		list.add(s);
 	    		
 	    	}
@@ -70,6 +79,9 @@ public class FileUtil extends FileUtils{
 		}
     	
 		return list;
+	}
+	public static List<String> file2List(String url){
+		return file2List(url,false);
 	}
 	/**
 	 * 文

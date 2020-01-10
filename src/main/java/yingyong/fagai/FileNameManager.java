@@ -18,11 +18,14 @@ public class FileNameManager {
 
 	//比较文件名是否包含
 	private static void compairNames(List<String> sStrList,List<String> dStrList){
+		int count = 0;
 		for(String ss : sStrList){
 			if(!dStrList.contains(ss)){
 				System.out.println(ss);
+				count ++;
 			}
 		}
+		System.out.println("共有 "+count+" 条新数据");
 		
 	}
 	/**
@@ -77,9 +80,9 @@ public class FileNameManager {
 	}
 	public static void main(String[] args) throws IOException {
 		//查看是否包含
-//		List<String> sFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\all.txt");
-//		List<String> dFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\备忘录-自治区.txt");
-//		compairNames(sFileNames,dFileNames);
+		List<String> sFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\全部受理事项库存.txt",true);
+		List<String> dFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\全部受理事项新.txt",true);
+		compairNames(dFileNames,sFileNames);
 /*****************************************************************************/
 		//去重复
 //		List<String> dList = CollectionUtil.removeDuplicateStr(sFileNames);
@@ -97,7 +100,7 @@ public class FileNameManager {
 //		
 /*****************************************************************************/
 		//抽取文件到一个目录
-		extractFiles();
+//		extractFiles();
 		
 		
 		
