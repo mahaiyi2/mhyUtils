@@ -11,6 +11,7 @@ public class GithubRepoPageProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
+//    	HttpClientGenerator
         page.addTargetRequests(page.getHtml().links().regex("(https://github\\.com/[\\w\\-]+/[\\w\\-]+)").all());
         page.addTargetRequests(page.getHtml().links().regex("(https://github\\.com/[\\w\\-])").all());
         page.putField("author", page.getUrl().regex("https://github\\.com/(\\w+)/.*").toString());
@@ -28,7 +29,10 @@ public class GithubRepoPageProcessor implements PageProcessor {
     }
 
     public static void main(String[] args) {
-    	Spider.create(new GithubRepoPageProcessor()).addUrl("https://github.com/code4craft").thread(5).run();
+    	Spider spider = Spider.create(new GithubRepoPageProcessor()).addUrl("https://github.com/code4craft").thread(5);
+    	spider.setDownloader(new MyHttpClientDownloader());
+    	spider.run();
+    	
     }
 
 }
