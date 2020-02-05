@@ -11,6 +11,7 @@ import crawler.webmagic.gov.SpiderConst;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.downloader.selenium.SeleniumDownloader;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
@@ -51,13 +52,16 @@ public class AhZf implements PageProcessor {
     	Spider spider = Spider
     			.create(new AhZf())
     			.addUrl("http://ahq.gov.cn/news/now/")//今日敖汉
-//    			.addUrl("http://ahq.gov.cn/news/department/")//部门动态
-//    			.addUrl("http://ahq.gov.cn/news/town/")//乡镇动态
+    			.addUrl("http://ahq.gov.cn/news/department/")//部门动态
+    			.addUrl("http://ahq.gov.cn/news/town/")//乡镇动态
     			.thread(1);
-    	spider.setDownloader(new MyHttpClientDownloader());
+//    	System.setProperty("selenuim_config",ClassLoader.getSystemResource("")+"config.ini");
+    	System.setProperty("selenuim_config","C:\\Users\\Administrator\\git\\mhyUtils\\target\\classes\\config.ini");
+//    	spider.setDownloader(new MyHttpClientDownloader());
+//    	spider.setDownloader(new SeleniumDownloader(ClassLoader.getSystemResource("")+"chromedriver.exe"));//模拟浏览器
+    	spider.setDownloader(new SeleniumDownloader("C:\\Users\\Administrator\\git\\mhyUtils\\target\\classes\\chromedriver.exe"));//模拟浏览器
     	spider.addPipeline(new ExcelPipleLine());
     	spider.run();
-    	
     	
     }
     public static void main(String[] args) {

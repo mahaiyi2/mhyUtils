@@ -21,9 +21,11 @@ public class MyFilter {
 		keyWord.add("安全");
 		keyWord.add("防");
 		keyWord.add("病毒");
+		keyWord.add("应急");
+		keyWord.add("救援");
 		
 		//注意月份从0开始算，第三个参数为当月的第几天，如果超过当月天数，则月份增加
-		clCond.set(2020,0, 31);
+		clCond.set(2020,1, 3);
 		
 	}
 	
