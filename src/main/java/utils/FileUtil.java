@@ -89,8 +89,18 @@ public class FileUtil extends FileUtils{
 	 * @throws IOException 
 	 */
 	public static void list2file(Iterable<String> list,String filePath) throws IOException{
+		list2file(list, filePath,false);
+	}
+	/** 
+	 * 
+	 * @param list
+	 * @param filePath
+	 * @param append 是否为追加模式
+	 * @throws IOException
+	 */
+	public static void list2file(Iterable<String> list,String filePath,boolean append) throws IOException{
 		File outFile = new File(filePath);
-		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile),"utf-8"));
+		BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(outFile,append),"utf-8"));
 		for(String s: list){
 			out.write(s);
 			out.newLine();
