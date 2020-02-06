@@ -16,7 +16,7 @@ public class CodeCreater {
 	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\wuzi\\supplyType";//笔记本
 //	public static final String templatePathSufix = "";
 	public static final String templatePathSufix = "/tree";//树结构专用
-	//包名，如果不写则没有
+	//包名，如果不写则没
 	public static final String PACKAGE_NAME = "";
 	public static final String baseOutPath="C:\\\\Users\\\\Administrator\\\\Desktop\\ytlkCode\\";
 //	public static final String baseOutPath="C:\\Users\\ab048704\\Desktop\\ytlkCode\\";
