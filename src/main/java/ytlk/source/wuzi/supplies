@@ -1,3 +1,11 @@
+supplies:物资
 supply_type:物资类型
+sub_type:子类型
 name:名称
 code:标识 
+source:来源
+source_type:采购或捐赠
+specifications:规格
+num_in:入库数量
+num_stock:剩余
+comment:备注
