@@ -11,13 +11,13 @@ import utils.StringUtil;
 import utils.TempUtil;
 
 public class CodeCreater {
-	public static final String MODEL_NAME = "mm";
-	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\mm\\contact";//台式机
-//	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\cms\\info";//笔记本
-	public static final String templatePathSufix = "";
-//	public static final String templatePathSufix = "/tree";//树结构专用
+	public static final String MODEL_NAME = "supply";
+//	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\mm\\contact";//台式机
+	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\wuzi\\supplyType";//笔记本
+//	public static final String templatePathSufix = "";
+	public static final String templatePathSufix = "/tree";//树结构专用
 	//包名，如果不写则没有
-	public static final String PACKAGE_NAME = null;
+	public static final String PACKAGE_NAME = "";
 	public static final String baseOutPath="C:\\\\Users\\\\Administrator\\\\Desktop\\ytlkCode\\";
 //	public static final String baseOutPath="C:\\Users\\ab048704\\Desktop\\ytlkCode\\";
 	public static void main(String[] args) {
