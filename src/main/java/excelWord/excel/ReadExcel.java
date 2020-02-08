@@ -12,7 +12,8 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
  import org.apache.poi.hssf.usermodel.HSSFRow;
  import org.apache.poi.hssf.usermodel.HSSFSheet;
  import org.apache.poi.hssf.usermodel.HSSFWorkbook;
- import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFCell;
  import org.apache.poi.xssf.usermodel.XSSFRow;
  import org.apache.poi.xssf.usermodel.XSSFSheet;
  import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -111,9 +112,9 @@ public class ReadExcel {
 	 
 	     @SuppressWarnings("static-access")
 	     private String getValue(XSSFCell xssfRow) {
-	         if (xssfRow.getCellType() == xssfRow.CELL_TYPE_BOOLEAN) {
+	         if (xssfRow.getCellType() == CellType.BOOLEAN) {
 	             return String.valueOf(xssfRow.getBooleanCellValue());
-	         } else if (xssfRow.getCellType() == xssfRow.CELL_TYPE_NUMERIC) {
+	         } else if (xssfRow.getCellType() == CellType.NUMERIC) {
 	             return String.valueOf(xssfRow.getNumericCellValue());
 	         } else {
 	             return String.valueOf(xssfRow.getStringCellValue());
@@ -122,9 +123,9 @@ public class ReadExcel {
 	 
 	     @SuppressWarnings("static-access")
 	     private String getValue(HSSFCell hssfCell) {
-	         if (hssfCell.getCellType() == hssfCell.CELL_TYPE_BOOLEAN) {
+	         if (hssfCell.getCellType() == CellType.BOOLEAN) {
 	             return String.valueOf(hssfCell.getBooleanCellValue());
-	         } else if (hssfCell.getCellType() == hssfCell.CELL_TYPE_NUMERIC) {
+	         } else if (hssfCell.getCellType() == CellType.NUMERIC) {
 	             return String.valueOf(hssfCell.getNumericCellValue());
 	         } else {
 	             return String.valueOf(hssfCell.getStringCellValue());

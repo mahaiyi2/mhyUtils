@@ -17,6 +17,7 @@ import org.apache.poi.hssf.usermodel.HSSFShape;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.PictureData;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -90,7 +91,7 @@ public class PicExcelHbgb {
 			                list.add("PARTY_COMMITTEE_MANAGE_ID");
 			                for(int i = 1;i<17; i++){
 			                	Cell cell = row.getCell(i);
-			                	cell.setCellType(Cell.CELL_TYPE_STRING);
+			                	cell.setCellType(CellType.STRING);
 			                	map.put(list.get(i-1), cell.getStringCellValue());
 			                } 
 			                map.put("GB_LX", "0");

@@ -5,6 +5,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -77,7 +78,7 @@ public class LinkCommand extends AbstractCommand {
         if(cell == null){
             cell = row.createCell(cellRef.getCol());
         }
-        cell.setCellType(HSSFCell.CELL_TYPE_FORMULA);
+        cell.setCellType(CellType.FORMULA);
         cell.setCellFormula("HYPERLINK(\"" + url+ "\",\"" + title + "\")");
         if(!url.equals(title)){
             cell.setCellValue(title);
@@ -86,7 +87,7 @@ public class LinkCommand extends AbstractCommand {
         CellStyle linkStyle = cell.getCellStyle();
         Font cellFont= transformer.getWorkbook().createFont();
         cellFont.setUnderline((byte) 1);
-        cellFont.setColor(HSSFColor.BLUE.index);
+//        cellFont.setColor(HSSFColor.HSSFColorPredefined.BLUE);
         linkStyle.setFont(cellFont);
     }
 

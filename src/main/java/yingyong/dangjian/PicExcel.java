@@ -17,6 +17,7 @@ import org.apache.poi.hssf.usermodel.HSSFShape;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.PictureData;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -99,7 +100,7 @@ public class PicExcel {
 			                
 			                for(int i = 1;i<24 ; i++){
 			                	Cell cell = row.getCell(i);
-			                	cell.setCellType(Cell.CELL_TYPE_STRING);
+			                	cell.setCellType(CellType.STRING);
 			                	map.put(list.get(i-1), cell.getStringCellValue());
 			                } 
 			                XSSFPictureData picData = pic.getPictureData();  
@@ -161,7 +162,7 @@ public class PicExcel {
 			                list.add("ORDER_BY");
 			                for(int i = 1;i<26; i++){
 			                	Cell cell = row.getCell(i);
-			                	cell.setCellType(Cell.CELL_TYPE_STRING);
+			                	cell.setCellType(CellType.STRING);
 			                	map.put(list.get(i-1), cell.getStringCellValue());
 			                } 
 			                HSSFPictureData picData = pic.getPictureData();  

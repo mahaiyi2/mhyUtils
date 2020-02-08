@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.apache.poi.POIXMLDocumentPart;
 import org.apache.poi.ss.usermodel.PictureData;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
@@ -28,12 +27,12 @@ public class picExcel2010 {
 		        XSSFSheet sheet = (XSSFSheet) workbook.getSheetAt(0);  
 		        List<XSSFShape> shapes = null;
 		        //poi 3.9写法
-		        for (POIXMLDocumentPart dr : sheet.getRelations()) {  
-		            if (dr instanceof XSSFDrawing) {  
-		                XSSFDrawing drawing = (XSSFDrawing) dr;  
-		               shapes = drawing.getShapes();  
-		            }
-		        }
+//		        for (POIXMLDocumentPart dr : sheet.getRelations()) {  
+//		            if (dr instanceof XSSFDrawing) {  
+//		                XSSFDrawing drawing = (XSSFDrawing) dr;  
+//		               shapes = drawing.getShapes();  
+//		            }
+//		        }
 		        //poi 3.15写法
 //		        shapes = sheet.getDrawingPatriarch().getShapes();
 		        
