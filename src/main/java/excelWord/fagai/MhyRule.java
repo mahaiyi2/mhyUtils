@@ -11,7 +11,7 @@ public enum MhyRule {
 	private  String eg;
 	private MhyRule(String eg){
 		this.eg = eg;
-	}
+	} 
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

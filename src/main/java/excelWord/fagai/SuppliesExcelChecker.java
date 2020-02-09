@@ -74,7 +74,7 @@ public class SuppliesExcelChecker {
 	}
 	private static void printError(int rowNum,int colNum,String msg){
 		System.out.printf("第%d行，第%d列有不符合格式: "+msg);
-	}
+ 	}
 	/**
 	 * 解析单元格表达式
 	 * @param str
