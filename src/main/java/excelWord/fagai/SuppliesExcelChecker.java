@@ -8,53 +8,122 @@ import java.util.ArrayList;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class SuppliesExcelChecker {
-
-	public static void readExcel(String filePath,int sheetNum) throws FileNotFoundException, IOException {
-		// 建需要读取的excel文件写入stream
-		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(filePath));
-					// 指向sheet下标为0的sheet 即第一个sheet 也可以按在sheet的名称来寻找
-		XSSFSheet sheet = workbook.getSheetAt(sheetNum);
+	public static final String FLAG = "$#";
+	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
+	public static String DESTPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
+	public static void checkExcel(String tempPath,String destPath) throws FileNotFoundException, IOException {
+		//模板文件
+		XSSFWorkbook ruleWorkbook = new XSSFWorkbook(new FileInputStream(tempPath));
+		//模板sheet
+		XSSFSheet ruleSheet = ruleWorkbook.getSheetAt(0);
+		//待检文件
+		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(DESTPATH));
+		//待检sheet
+		XSSFSheet sheet = workbook.getSheetAt(0);
 					// 获取sheet1中的总行数
-					int rowCount = sheet.getLastRowNum();
+					int rowCount = ruleSheet.getLastRowNum();
 					//获取总列数
-					int columnCount = sheet.getRow(0).getPhysicalNumberOfCells();
+					int columnCount = ruleSheet.getRow(0).getPhysicalNumberOfCells();
 					
-					System.out.println("行数为："+rowCount+"列数为："+columnCount);
+					System.out.println("模板行数为："+rowCount+"列数为："+columnCount);
 					
 					for (int i = 0; i <= rowCount; i++) {
 						// 获取第i列的row对象
-						XSSFRow row = sheet.getRow(i);
-						
-						ArrayList<String> listRow = new ArrayList<String>();
-		 
+						XSSFRow ruleRow = ruleSheet.getRow(i);
 						for (int j = 0; j < columnCount; j++) {
-							//下列步骤为判断cell读取到的数据是否为null 如果不做处理 程序会报错
-							String cell = null;
-							//如果未null则加上""组装成非null的字符串
-							if(row == null) {
-								System.out.println("第 "+i+"排 "+"为null");
+							if(ruleRow == null) {//行为空，不进行校验
 								continue;
 							}
-							if(row.getCell(j) == null){
-								System.out.println("第 "+i+" 排,第 "+j+" 列为null");
+							if(ruleRow.getCell(j) == null){//单元格为空，不进行校验
 								continue;
-							//如果读取到额cell不为null 则直接加入	listRow集合
 							}else{
-								System.out.println("第 "+i+" 排,第 "+j+" 格式为: "+row.getCell(j).getCellType());
+								targetCheck(sheet,i,j,ruleRow.getCell(j));
 							}
 		 
 						}
 		 
-		 
+						System.out.println("检查完成");
 					}
+					//关闭，释放资源
+					ruleWorkbook.close();
 		 
 	}
+	public static boolean targetCheck(XSSFSheet sheet,int rowNum,int colNum,XSSFCell cellChecker) throws FileNotFoundException, IOException{
+		
+		XSSFRow row = sheet.getRow(rowNum);
+		
+		if(cellChecker != null){//如果规则不为空才进行检查
+			cellChecker.getStringCellValue();
+			return true;
+		}
+		
+		if(row ==null){//空行直接返回失败
+			printError(rowNum,colNum,"该行为空");
+			return false;
+		}
+		XSSFCell cell = row.getCell(colNum);
+		//cell为空直接返回失败
+		
+		return true;
+	}
+	private static void printError(int rowNum,int colNum,String msg){
+		System.out.printf("第%d行，第%d列有不符合格式: "+msg);
+	}
+	/**
+	 * 解析单元格表达式
+	 * @param str
+	 * @return
+	 */
+	private static EgAnalyser egAnalyse(String str){
+		
+		EgAnalyser egResult = new EgAnalyser();
+		if(str == null){
+			egResult.setNoRule(true);
+			return egResult;
+		}
+		int flagIdx = str.lastIndexOf(FLAG);
+		String eg = str.substring(flagIdx+FLAG.length(), str.length());
+		String target = str.substring(0,flagIdx);
+		egResult.setRule(eg);
+		egResult.setTarget(target);
+		
+		return egResult;
+	}
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		readExcel("C:\\Users\\Administrator\\Desktop\\格式测试.xlsx",0);
+//		checkExcel(TEMPPATH,"");
+		egAnalyse(null);
+	}
+	
+	
+	private static class EgAnalyser{
+		private String rule;
+		private String target;
+		boolean noRule;
+		
+		public boolean isNoRule() {
+			return noRule;
+		}
+		public void setNoRule(boolean noRule) {
+			this.noRule = noRule;
+		}
+		public String getRule() {
+			return rule;
+		}
+		public void setRule(String rule) {
+			this.rule = rule;
+		}
+		public String getTarget() {
+			return target;
+		}
+		public void setTarget(String target) {
+			this.target = target;
+		}
+		
 	}
 }
