@@ -9,7 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class SuppliesExcelChecker {
-	public static final String FLAG = "$#";
+	
 	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
 	public static String DESTPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
 	public static void checkExcel(String tempPath,String destPath) throws FileNotFoundException, IOException {
@@ -47,7 +47,7 @@ public class SuppliesExcelChecker {
 		}
 		//关闭，释放资源
 		ruleWorkbook.close();
-		 
+		workbook.close(); 
 	}
 	public static boolean targetCheck(XSSFSheet sheet,int rowNum,int colNum,XSSFCell cellChecker) throws FileNotFoundException, IOException{
 		
@@ -58,7 +58,7 @@ public class SuppliesExcelChecker {
 			return true;
 		}
 		//解析单元格中的表达式
-		EgAnalyser eg = egAnalyse(cellChecker.getStringCellValue());
+		EgAnalyser eg = EgAnalyser.egAnalyse(cellChecker.getStringCellValue());
 		if(eg.noRule){//如不需要验证直接返回
 			return true;
 			}
@@ -71,7 +71,7 @@ public class SuppliesExcelChecker {
 		XSSFCell cell = row.getCell(colNum);
 		//cell为空直接返回失败
 		if(cell == null){
-			if( eg.rule.equals(MhyRule.STRING_NULL)||eg.rule.equals(MhyRule.NUM_NULL)){
+			if( eg.getRule().equals(MhyRule.STRING_NULL)||eg.getRule().equals(MhyRule.NUM_NULL)){
 				return true;
 			}else{
 				printError(rowNum,colNum,"必填项为空");
@@ -79,65 +79,15 @@ public class SuppliesExcelChecker {
 			}
 		}
 		
-		
 		return true;
 	}
 	private static void printError(int rowNum,int colNum,String msg){
 		System.out.printf("第%d行，第%d列有不符合格式: "+msg);
  	}
-	/**
-	 * 解析单元格表达式
-	 * @param str
-	 * @return
-	 */
-	private static EgAnalyser egAnalyse(String str){
-		
-		EgAnalyser egResult = new EgAnalyser();
-		if(str == null){
-			egResult.setNoRule(true);
-			return egResult;
-		}
-		int flagIdx = str.lastIndexOf(FLAG);
-		String eg = str.substring(flagIdx+FLAG.length(), str.length());
-		String target = str.substring(0,flagIdx);
-		egResult.setRule(eg);
-		egResult.setTarget(target);
-		if(MhyRule.contains(eg)){//如果不是程序预定义的表达式则不进行验证
-			egResult.setNoRule(false);
-		}else{
-			egResult.setNoRule(true);
-		}
-		return egResult;
-	}
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 //		checkExcel(TEMPPATH,"");
-		egAnalyse(null);
+		EgAnalyser.egAnalyse(null);
 	} 
 	
-	
-	private static class EgAnalyser{
-		private String rule;
-		private String target;
-		boolean noRule;
-		
-		public boolean isNoRule() {
-			return noRule;
-		}
-		public void setNoRule(boolean noRule) {
-			this.noRule = noRule;
-		}
-		public String getRule() {
-			return rule;
-		}
-		public void setRule(String rule) {
-			this.rule = rule;
-		}
-		public String getTarget() {
-			return target;
-		}
-		public void setTarget(String target) {
-			this.target = target;
-		}
-		
-	}
 }
