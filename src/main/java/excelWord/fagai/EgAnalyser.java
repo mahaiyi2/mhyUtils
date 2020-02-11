@@ -38,6 +38,10 @@ public class EgAnalyser {
 			return egResult;
 		}
 		int flagIdx = str.lastIndexOf(FLAG);
+		if(flagIdx==-1){
+			egResult.setNoRule(true);
+			return egResult;
+		}
 		String eg = str.substring(flagIdx+FLAG.length(), str.length());
 		String target = str.substring(0,flagIdx);
 		egResult.setRule(eg);

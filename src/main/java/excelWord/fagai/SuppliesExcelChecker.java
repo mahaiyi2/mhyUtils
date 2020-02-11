@@ -3,6 +3,8 @@ package excelWord.fagai;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -11,14 +13,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class SuppliesExcelChecker {
 	
 	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
-	public static String DESTPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
+	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
 	public static void checkExcel(String tempPath,String destPath) throws FileNotFoundException, IOException {
 		//模板文件
 		XSSFWorkbook ruleWorkbook = new XSSFWorkbook(new FileInputStream(tempPath));
 		//模板sheet
 		XSSFSheet ruleSheet = ruleWorkbook.getSheetAt(0);
 		//待检文件
-		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(DESTPATH));
+		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(TARGETPATH));
 		//待检sheet
 		XSSFSheet sheet = workbook.getSheetAt(0);
 		// 获取sheet1中的总行数
@@ -27,7 +29,7 @@ public class SuppliesExcelChecker {
 		int columnCount = ruleSheet.getRow(0).getPhysicalNumberOfCells();
 		
 		System.out.println("模板行数为："+rowCount+"列数为："+columnCount);
-		
+		boolean checkResult =false;
 		for (int i = 0; i <= rowCount; i++) {
 			// 获取第i列的row对象
 			XSSFRow ruleRow = ruleSheet.getRow(i);
@@ -38,13 +40,25 @@ public class SuppliesExcelChecker {
 				if(ruleRow.getCell(j) == null){//单元格为空，不进行校验
 						continue;
 					}else{
-						targetCheck(sheet,i,j,ruleRow.getCell(j));
+						try{
+							checkResult = targetCheck(sheet,i,j,ruleRow.getCell(j));
+							if(!checkResult){//有问题则停止检查
+								break;
+							}
+						}catch(Exception e){
+							System.out.println(j+"-"+j);
+							e.printStackTrace();
+						}
+						
 					}
- 
+					if(!checkResult){//有问题则停止检查
+						break;
+					}
 				}
  
-				System.out.println("检查完成");
+				
 		}
+		System.out.println("检查完成");
 		//关闭，释放资源
 		ruleWorkbook.close();
 		workbook.close(); 
@@ -53,8 +67,7 @@ public class SuppliesExcelChecker {
 		
 		XSSFRow row = sheet.getRow(rowNum);
 		
-		if(cellChecker != null){//如果规则不为空才进行检查
-			cellChecker.getStringCellValue();
+		if(cellChecker == null){//如果规则不为空才进行检查
 			return true;
 		}
 		//解析单元格中的表达式
@@ -69,25 +82,66 @@ public class SuppliesExcelChecker {
 		}
 		
 		XSSFCell cell = row.getCell(colNum);
-		//cell为空直接返回失败
-		if(cell == null){
-			if( eg.getRule().equals(MhyRule.STRING_NULL)||eg.getRule().equals(MhyRule.NUM_NULL)){
+		//数字或者空值
+		if(eg.getRule().equals(MhyRule.NUM_NULL.toString())){
+			if(cell==null || cell.getCellType().equals(CellType.NUMERIC)){
 				return true;
 			}else{
-				printError(rowNum,colNum,"必填项为空");
-				return false;
+				printError(rowNum, colNum, "格式错误");
 			}
 		}
-		
+		//字符串或者空值
+		if(eg.getRule().equals(MhyRule.STRING_NULL.toString())){
+			if(cell==null || cell.getCellType().equals(CellType.STRING)){
+				return true;
+			}else{
+				printError(rowNum, colNum, "格式错误");
+			}
+		}
+		//非空数字
+		if(eg.getRule().equals(MhyRule.NUMBER.toString())){
+			if(cell!=null && cell.getCellType().equals(CellType.STRING)){
+				return true;
+			}else{
+				printError(rowNum, colNum, "格式错误");
+			}
+		}
+		//非空字符串
+		if(eg.getRule().equals(MhyRule.STRING.toString())){
+			if(cell!=null && cell.getCellType().equals(CellType.STRING)){
+				return true;
+			}else{
+				printError(rowNum, colNum, "格式错误");
+			}
+		}
+		//非空字符串
+		if(eg.getRule().equals(MhyRule.STRING.toString())){
+			if(cell!=null && cell.getCellType().equals(CellType.STRING)){
+				return true;
+			}else{
+				printError(rowNum, colNum, "格式错误");
+			}
+		}
+		//非空字符串
+		if(eg.getRule().equals(MhyRule.EQ.toString())){
+			if(cell!=null && eg.getTarget().equals(cell.getStringCellValue())){
+				return true;
+			}else{
+				printError(rowNum, colNum, "格式错误");
+			}
+		}
 		return true;
 	}
+	
+	
 	private static void printError(int rowNum,int colNum,String msg){
-		System.out.printf("第%d行，第%d列有不符合格式: "+msg);
+		System.out.printf("第%d行，第%d列有不符合格式: "+msg,rowNum,colNum);
+		System.out.println();
  	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-//		checkExcel(TEMPPATH,"");
-		EgAnalyser.egAnalyse(null);
+		checkExcel(TEMPPATH,TARGETPATH);
+//		EgAnalyser.egAnalyse(null);
 	} 
 	
 }
