@@ -1,5 +1,6 @@
 package excelWord.fagai;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,14 +14,15 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class SuppliesExcelChecker {
 	
 	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
-	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static void checkExcel(String tempPath,String destPath) throws FileNotFoundException, IOException {
+//	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
+	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200212";
+	public static void checkExcel(String tempPath,File targetFile) throws FileNotFoundException, IOException {
 		//模板文件
 		XSSFWorkbook ruleWorkbook = new XSSFWorkbook(new FileInputStream(tempPath));
 		//模板sheet
 		XSSFSheet ruleSheet = ruleWorkbook.getSheetAt(0);
 		//待检文件
-		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(TARGETPATH));
+		XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(targetFile));
 		//待检sheet
 		XSSFSheet sheet = workbook.getSheetAt(0);
 		// 获取sheet1中的总行数
@@ -28,7 +30,7 @@ public class SuppliesExcelChecker {
 		//获取总列数
 		int columnCount = ruleSheet.getRow(0).getPhysicalNumberOfCells();
 		
-		System.out.println("模板行数为："+rowCount+"列数为："+columnCount);
+//		System.out.println("模板行数为："+rowCount+"列数为："+columnCount);
 		boolean checkResult =false;
 		for (int i = 0; i <= rowCount; i++) {
 			// 获取第i列的row对象
@@ -42,23 +44,20 @@ public class SuppliesExcelChecker {
 					}else{
 						try{
 							checkResult = targetCheck(sheet,i,j,ruleRow.getCell(j));
-							if(!checkResult){//有问题则停止检查
-								break;
-							}
 						}catch(Exception e){
 							System.out.println(j+"-"+j);
 							e.printStackTrace();
 						}
 						
 					}
-					if(!checkResult){//有问题则停止检查
-						break;
-					}
+//					if(!checkResult){//有问题则停止检查
+//						break;
+//					}
 				}
  
 				
 		}
-		System.out.println("检查完成");
+		
 		//关闭，释放资源
 		ruleWorkbook.close();
 		workbook.close(); 
@@ -84,10 +83,11 @@ public class SuppliesExcelChecker {
 		XSSFCell cell = row.getCell(colNum);
 		//数字或者空值
 		if(eg.getRule().equals(MhyRule.NUM_NULL.toString())){
-			if(cell==null || cell.getCellType().equals(CellType.NUMERIC)){
+			if(cell==null ||cell.getCellType().equals(CellType.BLANK)|| cell.getCellType().equals(CellType.NUMERIC)){
 				return true;
 			}else{
 				printError(rowNum, colNum, "格式错误");
+				return false;
 			}
 		}
 		//字符串或者空值
@@ -96,14 +96,16 @@ public class SuppliesExcelChecker {
 				return true;
 			}else{
 				printError(rowNum, colNum, "格式错误");
+				return false;
 			}
 		}
 		//非空数字
 		if(eg.getRule().equals(MhyRule.NUMBER.toString())){
-			if(cell!=null && cell.getCellType().equals(CellType.STRING)){
+			if(cell!=null && cell.getCellType().equals(CellType.NUMERIC)){
 				return true;
 			}else{
 				printError(rowNum, colNum, "格式错误");
+				return false;
 			}
 		}
 		//非空字符串
@@ -112,6 +114,7 @@ public class SuppliesExcelChecker {
 				return true;
 			}else{
 				printError(rowNum, colNum, "格式错误");
+				return false;
 			}
 		}
 		//非空字符串
@@ -120,6 +123,7 @@ public class SuppliesExcelChecker {
 				return true;
 			}else{
 				printError(rowNum, colNum, "格式错误");
+				return false;
 			}
 		}
 		//非空字符串
@@ -128,6 +132,7 @@ public class SuppliesExcelChecker {
 				return true;
 			}else{
 				printError(rowNum, colNum, "格式错误");
+				return false;
 			}
 		}
 		return true;
@@ -135,12 +140,30 @@ public class SuppliesExcelChecker {
 	
 	
 	private static void printError(int rowNum,int colNum,String msg){
-		System.out.printf("第%d行，第%d列有不符合格式: "+msg,rowNum,colNum);
+		System.out.printf("第%d行，第%d列 : "+msg,rowNum+1,colNum+1);
 		System.out.println();
  	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
-		checkExcel(TEMPPATH,TARGETPATH);
+		File f = new File(TARGETPATH);
+		if(f.isFile()&&f.getName().endsWith("xlsx")){
+			System.out.println("开始检查文件: "+f.getName());
+			checkExcel(TEMPPATH,f);
+		}
+		if(f.isDirectory()){
+			File[] fileList = f.listFiles();
+			for(File file:fileList){
+				if(file.getName().endsWith("xlsx")){
+					System.out.println("开始检查文件: "+file.getName());
+					checkExcel(TEMPPATH,file);
+				}else{
+					System.out.println("文件:"+file.getName()+"不进行检查");
+				}
+			}
+		}
+		System.out.println("检查完成");
+//		checkExcel(TEMPPATH,TARGETPATH);
+		
 //		EgAnalyser.egAnalyse(null);
 	} 
 	
