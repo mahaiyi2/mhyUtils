@@ -21,14 +21,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelChangeChecker {
 	
-	public static String PATH_OLD =  "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200212";
+	public static String PATH_OLD =  "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200213";
 //	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static String PATH_NEW = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200213";
+	public static String PATH_NEW = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200214";
 	public static String RESULT_FOLDER = PATH_NEW+"\\对比结果";
 	static int[][] iii={//起始行，起始列，结束行，结束列
 			{4,4,20,4},
-			{5,4,20,5},
-			{6,4,20,6}
+			{4,5,20,5},
+			{4,6,20,6}
 	};
 	
 	public static void checkExcel(File oldF,File newF) throws FileNotFoundException, IOException {
@@ -50,9 +50,9 @@ public class ExcelChangeChecker {
 		greenFont.setFontHeightInPoints((short)18);
 		greenStyle.setFont(greenFont);
 		
-		for(int[]ii:iii){
+		for(int[]ii:iii){//{4,4,20,4},
 			for(int i = ii[0];i<ii[2];i++){
-				int colNum = ii[0]-1,rowNum = i-1;
+				int rowNum = i-1,colNum = ii[1]-1;
 				XSSFRow oldRow = oldSheet.getRow(rowNum);
 				XSSFCell oldCell =  oldRow.getCell(colNum);
 				XSSFRow newRow = newSheet.getRow(rowNum);
