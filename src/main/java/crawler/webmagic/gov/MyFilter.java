@@ -25,7 +25,7 @@ public class MyFilter {
 		keyWord.add("救援");
 		
 		//注意月份从0开始算，第三个参数为当月的第几天，如果超过当月天数，则月份增加
-		clCond.set(2020,1, 13);
+		clCond.set(2020,1, 14);
 		
 	}
 	
