@@ -12,7 +12,7 @@ public class Enter {
 		LxZf.spriderStart();//林西政府
 		KqZf.spriderStart();//克旗政府
 		WqZf.spriderStart();//翁旗政府
-		AhZf.spriderStart();//敖汉政府 未完成
+//		AhZf.spriderStart();//敖汉政府 未完成
 		KlqZf.spriderStart();//喀喇沁旗政府
 		NcZf.spriderStart();//宁城县政府
 		
