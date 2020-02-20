@@ -15,7 +15,7 @@ public class SuppliesExcelChecker {
 	
 	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
 //	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200217";
+	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200220";
 	public static void checkExcel(String tempPath,File targetFile) throws FileNotFoundException, IOException {
 		//模板文件
 		XSSFWorkbook ruleWorkbook = new XSSFWorkbook(new FileInputStream(tempPath));
@@ -145,6 +145,7 @@ public class SuppliesExcelChecker {
  	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
+		int count = 0;
 		File f = new File(TARGETPATH);
 		if(f.isFile()&&f.getName().endsWith("xlsx")){
 			System.out.println("开始检查文件: "+f.getName());
@@ -156,12 +157,13 @@ public class SuppliesExcelChecker {
 				if(file.getName().endsWith("xlsx")){
 					System.out.println("开始检查文件: "+file.getName());
 					checkExcel(TEMPPATH,file);
+					count++;
 				}else{
 					System.out.println("文件:"+file.getName()+"不进行检查");
 				}
 			}
 		}
-		System.out.println("检查完成");
+		System.out.println("检查完成,共检查 "+count+" 个文件");
 //		checkExcel(TEMPPATH,TARGETPATH);
 		
 //		EgAnalyser.egAnalyse(null);

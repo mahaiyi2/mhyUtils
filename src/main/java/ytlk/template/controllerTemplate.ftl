@@ -56,7 +56,6 @@ public class ${controllerName} extends BaseController{
 			List<${entityName}> theList = service.queryList(params);
 			return responseSuccess(theList);
 		}else {
-			service.queryByPage(params);
 			return responseSuccess(service.queryByPage(params));
 		}
 		
