@@ -21,9 +21,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelChangeChecker {
 	
-	public static String PATH_OLD =  "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200221";
+	public static String PATH_OLD =  "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200222";
 //	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static String PATH_NEW = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200222";
+	public static String PATH_NEW = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200223";
 	public static String RESULT_FOLDER = PATH_NEW+"\\对比结果";
 	static int[][] iii={//起始行，起始列，结束行，结束列
 			{4,4,20,4},
