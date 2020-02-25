@@ -86,6 +86,8 @@ var bstblPageParams={
 //初始化表格
 var bstbl = new YTLK.bsTable(page_table,bstblPageParams);
 bstbl.init({
+  toolbar:'#toolbar',
+  search:false,
    columns: [{
     field: 'id',
     title: 'ID'
@@ -128,7 +130,10 @@ bstbl.init({
     });
  }
  
- 
+   //点击查询按钮
+ $(document).on('click', ".queryButton",function(){
+     page_table.bootstrapTable('refresh');
+  });
 
   });
 

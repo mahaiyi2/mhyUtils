@@ -26,10 +26,18 @@
 		<h1>${theDes}</h1>
 	</div>
 	<div class="content">
-    	<!--bootstrap-table搜索用参数form-->
-    	<form action="" method="get" id="bstbl_searchForm" class="bstbl_searchForm" style="display: none;" accept-charset="utf-8">
-    		<!--<input type="hidden" id="parentId" name="parentId" value="0">-->
-    	</form>
+	      <!--bootstrap-table搜索用参数form-->
+    	  <div id="toolbar" >
+    		<form action="" method="get" id="bstbl_searchForm" class="bstbl_searchForm form-inline"  accept-charset="utf-8">
+				<div class="form-group " style="margin-left: 20px;text-align: right">
+			     <label ></label>
+			     <div class="input-group ">
+			      <input type="text" class="form-control input-sm" name="search" id="searchText" placeholder="请输入名称">
+			     </div>
+			     </div>
+			     <button type="button" class="btn btn-primary queryButton">查询</button>
+    		</form>
+    	</div> 
     	<div class="box box-primary">
     		<table id="tbl_${theName}"></table>
     		<div id="div_opts"></div>
