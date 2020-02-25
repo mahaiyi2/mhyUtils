@@ -1,0 +1,8 @@
+mark:标记
+name:名称
+short_name:简称
+comment:备注
+#
+mark_business:标记业务
+mark_id:标记Id
+business_id:业务Id
