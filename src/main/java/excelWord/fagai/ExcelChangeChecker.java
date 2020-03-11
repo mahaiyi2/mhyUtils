@@ -21,9 +21,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelChangeChecker {
 	
-	public static String PATH_OLD =  "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200225";
+	public static String PATH_OLD =  "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200311";
 //	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static String PATH_NEW = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200226";
+	public static String PATH_NEW = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200312";
 	public static String RESULT_FOLDER = PATH_NEW+"\\对比结果";
 	static int[][] iii={//起始行，起始列，结束行，结束列
 			{4,4,20,4},
@@ -47,7 +47,7 @@ public class ExcelChangeChecker {
 		XSSFCellStyle greenStyle = newWorkbook.createCellStyle();
 		XSSFFont greenFont = newWorkbook.createFont();
 		greenFont.setColor((short)3);
-		greenFont.setFontHeightInPoints((short)18);
+		greenFont.setFontHeightInPoints((short)16);
 		greenStyle.setFont(greenFont);
 		
 		for(int[]ii:iii){//{4,4,20,4},
@@ -71,7 +71,7 @@ public class ExcelChangeChecker {
 					
 					XSSFDrawing drawing = newSheet.createDrawingPatriarch();
 			        // 定义注释的大小和位置，详见文档
-			        XSSFComment comment = drawing.createCellComment(new XSSFClientAnchor(0,0,0,0, (short)4, 2 ,(short) 6, 5));
+			        XSSFComment comment = drawing.createCellComment(new XSSFClientAnchor(0,0,0,0, (short)4, 2 ,(short) 6, 6));
 			        XSSFRichTextString rtf = new XSSFRichTextString("原值: " + oldV+zjs+Math.abs(newV-oldV));
 			        XSSFFont commentFormatter = newWorkbook.createFont();
 			        commentFormatter.setFontName("宋体");

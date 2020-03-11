@@ -5,7 +5,7 @@ public class Enter {
 	public static void main(String[] args) {
 		HsqZf.spriderStart();//红山区政府
 		YbsqZf.spriderStart();//元宝山区政府
-		SsqZf.spriderStart();//松山区政府
+		SsqZf.spriderStart();//松山区政
 		AqZf.spriderStart();//阿旗政府
 		ZqZf.spriderStart();//左旗政府
 		YqZf.spriderStart();//右旗政府

@@ -14,8 +14,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class SuppliesExcelChecker {
 	
 	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
+//	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\15日需求规则.xlsx";
 //	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200226";
+	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200312";
+//	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200310\\15日内需求";
 	public static void checkExcel(String tempPath,File targetFile) throws FileNotFoundException, IOException {
 		//模板文件
 		XSSFWorkbook ruleWorkbook = new XSSFWorkbook(new FileInputStream(tempPath));
@@ -86,7 +88,8 @@ public class SuppliesExcelChecker {
 			if(cell==null ||cell.getCellType().equals(CellType.BLANK)|| cell.getCellType().equals(CellType.NUMERIC)){
 				return true;
 			}else{
-				printError(rowNum, colNum, "格式错误");
+//				System.out.println(cell.getStringCellValue().length());
+				printError(rowNum, colNum, "格式错误,cellType: "+cell.getCellType());
 				return false;
 			}
 		}

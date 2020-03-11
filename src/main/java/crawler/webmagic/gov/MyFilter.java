@@ -13,16 +13,16 @@ public class MyFilter {
 	private static Calendar clCond = Calendar.getInstance();
 	static{
 		keyWord = new HashSet<>();
-		keyWord.add("冠状");
-		keyWord.add("疫");
-		keyWord.add("肺炎");
-		keyWord.add("武汉");
-		keyWord.add("湖北");
-		keyWord.add("安全");
-		keyWord.add("防");
-		keyWord.add("病毒");
-		keyWord.add("应急");
-		keyWord.add("救援");
+		keyWord.add("诚信");
+		keyWord.add("信用");
+		keyWord.add("守信");
+		keyWord.add("联合激励");
+		keyWord.add("联合惩戒");
+		keyWord.add("联合奖惩");
+//		keyWord.add("防");
+//		keyWord.add("病毒");
+//		keyWord.add("应急");
+//		keyWord.add("救援");
 		
 		//注意月份从0开始算，第三个参数为当月的第几天，如果超过当月天数，则月份增加
 		clCond.set(2020,1, 23);
