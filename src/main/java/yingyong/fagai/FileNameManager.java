@@ -80,8 +80,8 @@ public class FileNameManager {
 	}
 	public static void main(String[] args) throws IOException {
 		//查看是否包含
-		List<String> sFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\全部受理事项库存.txt",true);
-		List<String> dFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\全部受理事项新.txt",true);
+		List<String> sFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\容缺受理事项库存.txt",true);
+		List<String> dFileNames = FileUtil.file2List("C:\\Users\\Administrator\\Desktop\\容缺受理事项新.txt",true);
 		compairNames(dFileNames,sFileNames);
 /*****************************************************************************/
 		//去重复

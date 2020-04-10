@@ -53,7 +53,7 @@ public class HsqZf implements PageProcessor {
     			.addUrl(SITE_BASE_PATH + "/news/jrtt/index.html")//今日头条
     			.thread(1);
     	spider.setDownloader(new MyHttpClientDownloader());
-    	spider.addPipeline(new ExcelPipleLine());
+    	spider.addPipeline(new ExcelPipleLine()); 
     	spider.run();
     	
     	
