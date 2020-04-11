@@ -12,8 +12,8 @@ import utils.TempUtil;
 
 public class CodeCreater {
 	public static final String MODEL_NAME = "mm";
-//	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\wuzi\\stockOut";//台式机
-	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\mm\\phone";//笔记本
+	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\mm\\mm";//台式机
+//	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\mm\\mm";//笔记本
 	public static final String templatePathSufix = "";
 //	public static final String templatePathSufix = "/tree";//树结构专用
 	//包名，如果不写则没
