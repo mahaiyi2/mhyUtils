@@ -45,8 +45,6 @@ public class EncryptUtilAES {
 			   sk = new SecretKeySpec(strKey.getBytes(), "AES");
 			   //SecretKeyFactory skf = SecretKeyFactory.getInstance("AES"); 
 			   //sk = skf.generateSecret(keySpec); 
-			    
- 
 			}catch(Exception e){
 				throw new RuntimeException("Error: error occurred during setting Key Cause: " + e);
 			}
@@ -81,7 +79,9 @@ public class EncryptUtilAES {
 	 */
 	public static Cipher getDeCipher(){
 		if(deCipher != null){
+			
 			return deCipher;
+			
 		}
 		else{
 			try {
