@@ -16,7 +16,7 @@ public class SuppliesExcelChecker {
 	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\格式规则.xlsx";
 //	public static String TEMPPATH = "C:\\Users\\Administrator\\Desktop\\15日需求规则.xlsx";
 //	public static String TARGETPATH = "C:\\Users\\Administrator\\Desktop\\格式测试.xlsx";
-	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200424";
+	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200430";
 //	public static String TARGETPATH = "F:\\fagai\\20200131\\防疫\\旗县区+本级物资\\20200310\\15日内需求";
 	public static void checkExcel(String tempPath,File targetFile) throws FileNotFoundException, IOException {
 		//模板文件
