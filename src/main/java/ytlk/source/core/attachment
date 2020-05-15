@@ -1,0 +1,7 @@
+attachment:附件
+business_type:业务类型
+business_id:业务ID
+name:文件名
+suffix:文件后缀
+read_type:读取方式（公开或权限）
+size:文件大小
