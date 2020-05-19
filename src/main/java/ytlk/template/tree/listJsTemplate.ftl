@@ -31,12 +31,24 @@
       }
     }
   };
-  //ztree请求传参数
-  function ztreeParam(treeObj,currentNode){
-    var param={}
-    param.parentId= currentNode?currentNode.id:"0";
-    return param;
-  }
+     //ztree请求传参数
+    var treeSearchFlag=false;
+    function ztreeParam(treeObj,currentNode){
+      var param={}
+      if(treeSearchFlag && $("#ipt_query_tree").val()!=""){//如果点击了查询按钮且内容不为空
+   	   param.search=$("#ipt_query_tree").val();
+   	   treeSearchFlag=false;//点击查询后将次状态改为false以便节点展开行为只通过父ID查询忽略检索条件
+   	   
+      }else{
+   	   param.parentId= currentNode?currentNode.id:mm_dept_root_id;
+      }
+      return param;
+    }
+    //点击左侧树检索按钮
+    $(document).on('click', "#btn_query_tree",function(){
+   	 treeSearchFlag = true;
+   	 var ztreeObj = $.fn.zTree.init($("#ul_ztree"), setting, null)
+     });
   //ztree异步数据处理
   function ztreeFilter(treeId, parentNode, res){
     if(res && res.ytlk_data){

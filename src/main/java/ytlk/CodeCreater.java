@@ -11,7 +11,7 @@ import utils.StringUtil;
 import utils.TempUtil;
 
 public class CodeCreater {
-	public static final String MODEL_NAME = "mm";
+	public static final String MODEL_NAME = "core";
 //	public static final String sourceFile = "C:\\Users\\Administrator\\git\\mhyUtils\\src\\main\\java\\ytlk\\source\\core\\attachment";//台式机
 	public static final String sourceFile = "F:\\biancheng\\workSpaces\\mhyUtils\\mhyUtils\\src\\main\\java\\ytlk\\source\\core\\attachment";//笔记本
 	public static final String templatePathSufix = "";

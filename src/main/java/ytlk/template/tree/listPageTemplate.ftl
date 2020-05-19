@@ -31,6 +31,12 @@
     	<div class="row">
 			<!--左侧树-->
 	        <div class="col-md-2">
+	        	<div class="form-inline row">
+			      	<div class="col-sm-9">
+			      		<input type="text" class="form-control input-sm form-inline" style="float:left;display:inline;" name="search" id="ipt_query_tree" >
+			      	</div>
+				  	<button type="button" id="btn_query_tree" class="btn btn-primary btn-sm col-sm-3">检索</button>
+		      	</div>
 	        	<div>
 	        		<ul id="ul_ztree" class="ztree"></ul>
 	        	</div>
