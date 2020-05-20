@@ -21,7 +21,7 @@ $(function(){
 	//关闭按钮就结束
 	var form=$("#form_${theName}_edit");
 	if(isUpdate){
-		form.attr("action","/${entityNameFl}/edit");
+		form.attr("action",YTLK.sysUrl("/${entityNameFl}/edit"));
 		YTLK.ajax({//获取表单信息
 			url:YTLK.sysUrl("/${entityNameFl}/getById"),
 			data:param
@@ -29,7 +29,7 @@ $(function(){
 			YTLK.fillForm(form,res.ytlk_data);
 		});
 	}else{
-		form.attr("action","/${entityNameFl}/create");
+		form.attr("action",YTLK.sysUrl("/${entityNameFl}/create"));
 		YTLK.fillForm(form,param);
 	}
 	
