@@ -37,21 +37,21 @@ public class ${controllerName} extends BaseController{
 	@ApiOperation(value = "创建")
     @PostMapping("/create")
     @RequiresPermissions("${entityNameFl}:insert")
-	public Object create(@ApiParam(required = true, value = "基本信息") @RequestBody ${entityName} obj) throws Exception {
+	public Object create(@ApiParam(required = true, value = "基本信息")  ${entityName} obj) throws Exception {
 		service.create(obj);
 		return responseSuccess(obj);
 	}
 	@ApiOperation(value = "更新")
 	@PostMapping("/edit")
 	@RequiresPermissions("${entityNameFl}:update")
-	public Object edit(@ApiParam(required = true, value = "基本信息") @RequestBody ${entityName} obj) throws Exception {
+	public Object edit(@ApiParam(required = true, value = "基本信息")  ${entityName} obj) throws Exception {
 		service.update(obj);
 		return responseSuccess(obj);
 	}
 	@ApiOperation(value = "获取列表")
 	@PostMapping("/queryList")
 	@RequiresPermissions("${entityNameFl}:read")
-	public Object queryList(@ApiParam(required = false, value = "基本信息") @RequestBody Map<String, Object> params ) throws Exception {
+	public Object queryList(@ApiParam(required = false, value = "基本信息")  Map<String, Object> params ) throws Exception {
 		if(params.get("offset")==null) {//有分页参数
 			List<${entityName}> theList = service.queryList(params);
 			return responseSuccess(theList);
