@@ -13,7 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.sun.media.sound.InvalidFormatException;
 
-import net.sf.jxls.transformer.XLSTransformer;
+//import net.sf.jxls.transformer.XLSTransformer;
 
 public class FormatTest {
 	public static void applicationExport() throws Exception {
@@ -37,9 +37,9 @@ public class FormatTest {
 //		response.setContentType("application/vnd.ms-excel");
 		try {
 			InputStream is = new FileInputStream(templateFileName);
-			XLSTransformer transformer = new XLSTransformer();
-			XSSFWorkbook workBook = (XSSFWorkbook) transformer.transformXLS(is,
-					beanParams);
+//			XLSTransformer transformer = new XLSTransformer();
+//			XSSFWorkbook workBook = (XSSFWorkbook) transformer.transformXLS(is,
+//					beanParams);
 			/*HSSFWorkbook workBook = (HSSFWorkbook) transformer.transformXLS(is,
 					beanParams);*/
 			
@@ -65,7 +65,7 @@ public class FormatTest {
 //			out = response.getOutputStream();
 			out = new FileOutputStream(destFileName);
 			// 将内容写入输出流并把缓存的内容全部发出去
-			workBook.write(out);
+//			workBook.write(out);
 			out.flush();
 		} catch (InvalidFormatException e) {
 			e.printStackTrace();

@@ -49,7 +49,7 @@ public class JxlsUtil {
         JexlExpressionEvaluator evaluator = (JexlExpressionEvaluator)transformer.getTransformationConfig().getExpressionEvaluator();
         Map<String, Object> funcs = new HashMap<String, Object>();
         funcs.put("jx", new JxlsUtil());    //添加自定义功能
-        evaluator.getJexlEngine().setFunctions(funcs);
+//        evaluator.getJexlEngine().setFunctions(funcs);
         jxlsHelper.processTemplate(context, transformer);
     }
 
