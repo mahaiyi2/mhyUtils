@@ -1,10 +1,7 @@
 package excelWord.fagai.credit;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
@@ -14,15 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFClientAnchor;
-import org.apache.poi.xssf.usermodel.XSSFComment;
-import org.apache.poi.xssf.usermodel.XSSFDrawing;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -32,7 +21,7 @@ import org.jxls.util.JxlsHelper;
 //C:\\Users\\Administrator\\Desktop\\测试\\信用修复类.xlsx
 //C:\\Users\\Administrator\\Desktop\\测试\\4.“失信主体主动参加信用修复培训的案例”反馈模板.xlsx
 public class XyxfEtl {
-	public static final String FOLD_PATH = "C:\\Users\\Administrator\\Desktop\\测试\\";
+	public static final String FOLD_PATH = "F:\\fagai\\20200701\\报送国家\\信用修复\\";
 	
 	List<Map<String,Object>> list_pxal = new ArrayList(); //4.“失信主体主动参加信用修复培训的案例”反馈模板
 	List<Map<String,Object>> list_xycn = new ArrayList(); //6.“失信主体在信用中国或信用网站主动开展信用承诺的案例”反馈模板
@@ -65,7 +54,7 @@ public class XyxfEtl {
 			map.put("pxjbbm",excelValue(row.getCell(c++),false));		//培训举办部门
 			map.put("pxnrhjg",excelValue(row.getCell(c++),false));			//培训内容
 			
-			map.put("flag",row.getCell(0).getStringCellValue());		//模板标记mhy开头
+			map.put("flag",excelValue(row.getCell(0),false));		//模板标记mhy开头
 			//判断是否加载如相应的模板
 			createParamList(map);
 		}
