@@ -1,7 +1,7 @@
-package gz;
+package bz;
 
 public class Test {
 	public static void main(String[] args) {
-		System.out.println(Tg.Jia);
+//		System.out.println(Tg.Jia);
 	}
 }
